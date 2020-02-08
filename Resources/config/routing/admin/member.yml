@@ -1,0 +1,35 @@
+ekyna_mailchimp_member_admin_home:
+    path: ""
+    defaults: { _controller: "ekyna_mailchimp.member.controller:homeAction" }
+    methods: GET
+
+ekyna_mailchimp_member_admin_list:
+    path: /list
+    defaults: { _controller: "ekyna_mailchimp.member.controller:listAction" }
+    methods: [GET|POST]
+
+ekyna_mailchimp_member_admin_new:
+    path: /new
+    defaults: { _controller: "ekyna_mailchimp.member.controller:newAction" }
+    methods: [GET|POST]
+
+ekyna_mailchimp_member_admin_show:
+    path: /{memberId}/show
+    defaults: { _controller: "ekyna_mailchimp.member.controller:showAction" }
+    methods: [GET]
+    requirements:
+        memberId: \d+
+
+ekyna_mailchimp_member_admin_edit:
+    path: /{memberId}/edit
+    defaults: { _controller: "ekyna_mailchimp.member.controller:editAction" }
+    methods: [GET|POST]
+    requirements:
+        memberId: \d+
+
+ekyna_mailchimp_member_admin_remove:
+    path: /{memberId}/remove
+    defaults: { _controller: "ekyna_mailchimp.member.controller:removeAction" }
+    methods: [GET|POST]
+    requirements:
+        memberId: \d+

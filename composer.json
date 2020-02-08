@@ -1,0 +1,28 @@
+{
+    "name" : "ekyna/mailchimp-bundle",
+    "description" : "Mailchimp management",
+    "type" : "symfony-bundle",
+    "authors" : [
+        {
+            "name" : "Etienne Dauvergne",
+            "homepage" : "https://ekyna.com"
+        }
+    ],
+    "keywords" : [
+        "symfony2",
+        "mailchimp",
+        "bundle"
+    ],
+    "homepage" : "https://github.com/ekyna/MailchimpBundle",
+    "license" : "MIT",
+    "require" : {
+        "php" : ">=7.0",
+        "ekyna/commerce-bundle" : "0.7.x-dev",
+        "drewm/mailchimp-api": "^2.5"
+    },
+    "autoload" : {
+        "psr-4" : {
+            "Ekyna\\Bundle\\MailchimpBundle\\" : ""
+        }
+    }
+}

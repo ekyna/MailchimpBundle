@@ -1,0 +1,46 @@
+ekyna_mailchimp:
+    menu:
+        title: MailChimp
+    status:
+        subscribed: Inscrit
+        unsubscribed: Désinscrit
+        cleaned: Néttoyé
+        pending: En attente
+        transactional: Transation
+    audience:
+        label:
+            singular: Audience
+            plural: Audiences
+        header:
+            list: Audiences <small>Liste des audiences</small>
+            show: Détail de l'audience <small>%name%</small>
+            new: Créer une nouvelle audience
+            edit: Modifier l'audience <small>%name%</small>
+            remove: Supprimer l'audience <small>%name%</small>
+        button:
+            list: Liste des audiences
+            show: Détail de l'audience
+            new: Nouvelle audience
+            edit: Modifier l'audience
+            remove: Supprimer l'audience
+            synchronize: Synchronizer depuis MailChimp
+        alert:
+            empty_list: Aucune audience configuré
+    member:
+        label:
+            singular: Membre
+            plural: Membres
+        header:
+            list: Membres <small>Liste des membres</small>
+            show: Détail du membre <small>%name%</small>
+            new: Créer un nouveau membre
+            edit: Modifier le membre <small>%name%</small>
+            remove: Supprimer le membre <small>%name%</small>
+        button:
+            list: Liste des membres
+            show: Détail du membre
+            new: Nouveau membre
+            edit: Modifier le membre
+            remove: Supprimer le membre
+        alert:
+            empty_list: Aucun membre configuré

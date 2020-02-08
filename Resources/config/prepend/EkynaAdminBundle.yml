@@ -1,0 +1,17 @@
+ekyna_admin:
+    menus:
+        mailchimp:
+            label: ekyna_mailchimp.menu.title
+            icon: envelope
+            position: 40
+            entries:
+                audiences:
+                    route: ekyna_mailchimp_audience_admin_home
+                    label: ekyna_mailchimp.audience.label.plural
+                    resource: ekyna_mailchimp_audience
+                    position: 10
+                members:
+                    route: ekyna_mailchimp_member_admin_home
+                    label: ekyna_mailchimp.member.label.plural
+                    resource: ekyna_mailchimp_member
+                    position: 20

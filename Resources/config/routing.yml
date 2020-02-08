@@ -1,0 +1,10 @@
+ekyna_mailchimp_admin:
+    resource: "routing/admin.yml"
+    prefix:   /admin/mailchimp
+
+ekyna_mailchimp_webhook:
+    path: /mailchimp/webhook/{secret}
+    controller: Ekyna\Bundle\MailchimpBundle\Controller\WebhookController
+    methods: [GET, POST]
+    requirements:
+        secret: '[0-9A-Za-z]{32}'

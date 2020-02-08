@@ -1,0 +1,81 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <defaults autoconfigure="false" autowire="false" public="false"/>
+
+        <!-- API -->
+        <service id="Ekyna\Bundle\MailchimpBundle\Service\Mailchimp" public="false">
+            <argument type="string"/><!-- Replaced by DI extension -->
+        </service>
+
+        <!-- Resource event listeners -->
+        <service id="Ekyna\Bundle\MailchimpBundle\Listener\AudienceListener" public="false">
+            <argument type="service" id="ekyna_resource.doctrine.orm.persistence_helper"/>
+            <argument type="service" id="Ekyna\Bundle\MailchimpBundle\Service\Mailchimp"/>
+            <tag name="resource.event_subscriber"/>
+        </service>
+        <service id="Ekyna\Bundle\MailchimpBundle\Listener\MemberListener" public="false">
+            <argument type="service" id="ekyna_resource.doctrine.orm.persistence_helper"/>
+            <argument type="service" id="Ekyna\Bundle\MailchimpBundle\Service\Mailchimp"/>
+            <tag name="resource.event_subscriber"/>
+        </service>
+
+        <!-- Synchronizer -->
+        <service id="Ekyna\Bundle\MailchimpBundle\Service\Synchronizer" public="false">
+            <argument type="service" id="Ekyna\Bundle\MailchimpBundle\Service\Mailchimp"/>
+            <argument type="service" id="ekyna_mailchimp.audience.repository"/>
+            <argument type="service" id="ekyna_mailchimp.member.repository"/>
+            <argument type="service" id="ekyna_mailchimp.audience.manager"/>
+            <argument type="service" id="Symfony\Component\Routing\Generator\UrlGeneratorInterface"/>
+            <argument type="collection">
+                <argument type="service" id="Ekyna\Bundle\MailchimpBundle\Listener\AudienceListener"/>
+                <argument type="service" id="Ekyna\Bundle\MailchimpBundle\Listener\MemberListener"/>
+            </argument>
+        </service>
+
+        <!-- Synchronize command -->
+        <service id="Ekyna\Bundle\MailchimpBundle\Command\SynchronizeCommand" public="false">
+            <argument type="service" id="Ekyna\Bundle\MailchimpBundle\Service\Synchronizer"/>
+            <tag name="console.command"/>
+        </service>
+
+        <!-- Webhook controller -->
+        <service id="Ekyna\Bundle\MailchimpBundle\Controller\WebhookController" public="false">
+            <argument type="service" id="Symfony\Component\EventDispatcher\EventDispatcherInterface"/>
+            <argument type="service" id="ekyna_mailchimp.audience.repository"/>
+            <argument type="service" id="Ekyna\Bundle\MailchimpBundle\Service\Logger"/>
+            <tag name="controller.service_arguments"/>
+        </service>
+
+        <!-- Webhook listener -->
+        <service id="Ekyna\Bundle\MailchimpBundle\Listener\WebhookListener" public="false">
+            <argument type="service" id="ekyna_mailchimp.member.repository"/>
+            <argument type="service" id="ekyna_mailchimp.audience.repository"/>
+            <argument type="service" id="Doctrine\ORM\EntityManagerInterface"/>
+            <argument type="collection">
+                <argument type="service" id="Ekyna\Bundle\MailchimpBundle\Listener\AudienceListener"/>
+                <argument type="service" id="Ekyna\Bundle\MailchimpBundle\Listener\MemberListener"/>
+            </argument>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <!-- Logger -->
+        <service id="Ekyna\Bundle\MailchimpBundle\Service\Logger" public="false">
+            <argument type="service" id="logger"/>
+            <tag name="monolog.logger" channel="mailchimp"/>
+        </service>
+
+        <!-- Customer event listener -->
+        <service id="Ekyna\Bundle\MailchimpBundle\Listener\CustomerListener" public="false">
+            <argument type="service" id="ekyna_resource.doctrine.orm.persistence_helper"/>
+            <argument type="service" id="ekyna_mailchimp.audience.repository"/>
+            <argument type="service" id="ekyna_mailchimp.member.repository"/>
+            <tag name="resource.event_subscriber"/>
+        </service>
+    </services>
+
+</container>

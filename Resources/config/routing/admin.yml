@@ -1,0 +1,7 @@
+ekyna_mailchimp_audience_admin:
+    resource: "admin/audience.yml"
+    prefix:   /audiences
+
+ekyna_mailchimp_member_admin:
+    resource: "admin/member.yml"
+    prefix:   /members

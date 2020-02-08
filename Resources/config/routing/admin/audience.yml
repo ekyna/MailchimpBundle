@@ -1,0 +1,40 @@
+ekyna_mailchimp_audience_admin_home:
+    path: ""
+    defaults: { _controller: "ekyna_mailchimp.audience.controller:homeAction" }
+    methods: GET
+
+ekyna_mailchimp_audience_admin_list:
+    path: /list
+    defaults: { _controller: "ekyna_mailchimp.audience.controller:listAction" }
+    methods: [GET|POST]
+
+ekyna_mailchimp_audience_admin_synchronize:
+    path: /synchronize
+    defaults: { _controller: "ekyna_mailchimp.audience.controller:synchronizeAction" }
+    methods: [GET]
+
+ekyna_mailchimp_audience_admin_new:
+    path: /new
+    defaults: { _controller: "ekyna_mailchimp.audience.controller:newAction" }
+    methods: [GET|POST]
+
+ekyna_mailchimp_audience_admin_show:
+    path: /{audienceId}/show
+    defaults: { _controller: "ekyna_mailchimp.audience.controller:showAction" }
+    methods: [GET]
+    requirements:
+        audienceId: \d+
+
+ekyna_mailchimp_audience_admin_edit:
+    path: /{audienceId}/edit
+    defaults: { _controller: "ekyna_mailchimp.audience.controller:editAction" }
+    methods: [GET|POST]
+    requirements:
+        audienceId: \d+
+
+ekyna_mailchimp_audience_admin_remove:
+    path: /{audienceId}/remove
+    defaults: { _controller: "ekyna_mailchimp.audience.controller:removeAction" }
+    methods: [GET|POST]
+    requirements:
+        audienceId: \d+

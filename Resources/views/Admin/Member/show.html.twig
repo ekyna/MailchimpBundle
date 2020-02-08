@@ -1,0 +1,32 @@
+{% extends '@EkynaAdmin/Entity/Default/show.html.twig' %}
+
+{% block main %}
+{% apply spaceless %}
+<div class="actions">
+    {{ admin_resource_btn(member, 'edit') }}
+    {{ admin_resource_btn(member, 'remove') }}
+</div>
+<div class="show show-with-tabs">
+    <ul class="nav nav-tabs" data-tab-key="{{ resource_id }}">
+        <li class="active">
+            <a href="#member-general" data-toggle="tab">
+                {{ 'ekyna_core.field.general'|trans }}
+            </a>
+        </li>
+    </ul>
+    <div class="show-body">
+        <div class="tab-content">
+            <div class="tab-pane active" id="member-general">
+                {{ show_row(member.emailAddress, 'text', {
+                    'label': 'ekyna_core.field.name'
+                }) }}
+                {# TODO #}
+                {{ show_row(member.status, 'text', {
+                    'label': 'ekyna_core.field.status'
+                }) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endapply %}
+{% endblock %}
