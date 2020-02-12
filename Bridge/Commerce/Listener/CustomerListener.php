@@ -1,6 +1,6 @@
 <?php
 
-namespace Ekyna\Bundle\MailchimpBundle\Listener;
+namespace Ekyna\Bundle\MailchimpBundle\Bridge\Commerce\Listener;
 
 use Ekyna\Bundle\MailchimpBundle\Model\MemberInterface;
 use Ekyna\Bundle\MailchimpBundle\Model\MemberStatuses;
@@ -95,7 +95,7 @@ class CustomerListener implements EventSubscriberInterface
     {
         $customer = $this->getCustomerFromEvent($event);
 
-        $members = $this->memberRepository->findBy(['emailAddress' => $customer->getEmail()]);
+        $members = $this->memberRepository->findOneByEmail($customer->getEmail());
 
         /** @var MemberInterface $member */
         foreach ($members as $member) {

@@ -69,13 +69,21 @@
             <tag name="monolog.logger" channel="mailchimp"/>
         </service>
 
-        <!-- Customer event listener -->
-        <service id="Ekyna\Bundle\MailchimpBundle\Listener\CustomerListener" public="false">
+        <!-- Commerce customer event listener -->
+        <service id="Ekyna\Bundle\MailchimpBundle\Bridge\Commerce\Listener\CustomerListener" public="false">
             <argument type="service" id="ekyna_resource.doctrine.orm.persistence_helper"/>
             <argument type="service" id="ekyna_mailchimp.audience.repository"/>
             <argument type="service" id="ekyna_mailchimp.member.repository"/>
             <tag name="resource.event_subscriber"/>
         </service>
+
+        <!-- Commerce member event listener -->
+        <service id="Ekyna\Bundle\MailchimpBundle\Bridge\Commerce\Listener\MemberListener" public="false">
+            <argument type="service" id="ekyna_resource.doctrine.orm.persistence_helper"/>
+            <argument type="service" id="ekyna_commerce.customer.repository"/>
+            <tag name="resource.event_subscriber"/>
+        </service>
+
     </services>
 
 </container>
